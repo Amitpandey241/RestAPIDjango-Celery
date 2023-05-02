@@ -1,0 +1,39 @@
+# version: "3"
+
+# services:
+#   django:
+#     build: .
+#     container_name: django
+#     command: python manage.py runserver 0.0.0.0.8000
+#     volumes:
+#       - ./usr/src/app
+#     ports:
+#       - "8000:8000"
+#     environment:
+#       - DEBUG=1
+#       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
+#       - CELERY_BROKER = redis://redis:6379/0
+#       - CELERY_BACKEND= redis://redis:6379/0
+#     depends_on: -redis
+#   celery:
+#     build: .
+#     command: celery -A config worker -l info -P eventlet
+#     volumes:
+#       - ./usr/src/app
+#     depends_on:
+#       - django
+#       - redis
+#   redis:
+#     image: "redis:alpine"
+
+version: "3"
+
+services:
+  app:
+    build:
+      context:
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
